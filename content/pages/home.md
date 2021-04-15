@@ -2,7 +2,7 @@
 template: HomePage
 slug: home
 title: HomePage
-listedmix: "Listed Winter Playlists "
+listedmix: Hello from KRAdev
 listedmixlk: https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1187392201&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true
 featuredImage: https://ucarecdn.com/95398940-4313-4972-bc47-b54183d7267f/-/crop/1995x1565/5,0/-/preview/
 featuredImage2: https://ucarecdn.com/cef9932a-00b4-4f89-a353-bd9af485f25d/-/crop/960x678/0,282/-/preview/
