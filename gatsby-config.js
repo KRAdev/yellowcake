@@ -1,9 +1,11 @@
 const postcssPresetEnv = require('postcss-preset-env')
 
+ignorecase = true
+
 module.exports = {
   siteMetadata: {
-    title: 'Yellowcake',
-    siteUrl: 'https://yellowcake.netlify.com'
+    title: 'Listed Productions',
+    siteUrl: 'https://listedproductions.com'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -17,17 +19,42 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        runtimeCaching: [
+          {
+            // Use cacheFirst since these don't need to be revalidated (same RegExp
+            // and same reason as above)
+            urlPattern: /(\.js$|\.css$|static\/)/,
+            handler: `cacheFirst`
+          },
+          {
+            // Add runtime caching of various other page resources
+            urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+            handler: `staleWhileRevalidate`
+          },
+          {
+            // uploadcare
+            urlPattern: /^https:\/\/ucarecdn.com\/[-a-zA-Z0-9@:%_\+.~#?&//=]*?\/10x\//,
+            handler: `staleWhileRevalidate`
+          }
+        ],
+        skipWaiting: true,
+        clientsClaim: true
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'yellowcake',
-        short_name: 'yellowcake',
+        name: 'listed',
+        short_name: 'listed',
         start_url: '/',
         background_color: '#00C2BD',
         theme_color: '#00C2BD',
         // Enables "Add to Homescreen" prompt and disables browser UI (including back button)
         // see https://developers.google.com/web/fundamentals/web-app-manifest/#display
         display: 'standalone',
-        icon: `${__dirname}/static/images/logo.svg` // This path is relative to the root of the site.
+        icon: `${__dirname}/static/images/logo.jpg` // This path is relative to the root of the site.
       }
     },
 
@@ -63,6 +90,21 @@ module.exports = {
             options: {
               maxWidth: 800,
               linkImagesToOriginal: false
+            }
+          },
+          {
+            resolve: `@raae/gatsby-remark-oembed`,
+            options: {
+              providers: {
+                settings: {
+                  Twitter: {
+                    theme: "dark" // Use the Twitter dark theme
+                  },
+                  Instagram: {
+                    hidecaption: true
+                  }
+                }
+              }
             }
           },
           `gatsby-remark-responsive-iframe`

@@ -15,52 +15,25 @@ class Popup extends Component {
     })
   }
 
-  handleKeyDown = ev => {
-    if (ev.keyCode === 13 && !this.state.showPopup) {
-      // enter to open
-      this.togglePopup()
-    } else if (ev.keyCode === 27 && this.state.showPopup) {
-      // escape to close
-      this.togglePopup()
-    }
-  }
-
   render() {
     const { children } = this.props
     return (
       <Fragment>
         <div className="taCenter">
-          <h3> Simple Popup Example</h3>
-          <div
-            className="Button"
-            onClick={this.togglePopup.bind(this)}
-            onKeyDown={this.handleKeyDown}
-            tabIndex={0}
-            aria-label="Toggle Popup"
-            role="button"
-          >
-            Click To Launch Popup
+          <h3> are u listed?</h3>
+          <div className="example_d" onClick={this.togglePopup.bind(this)}>
+            Click For More Info
           </div>
         </div>
+
         {this.state.showPopup ? (
           <div className="Popup-Overlay">
             <div
               className="Popup-Background"
               onClick={this.togglePopup.bind(this)}
-              onKeyDown={this.handleKeyDown}
-              tabIndex={0}
-              aria-label="Toggle Popup"
-              role="button"
             ></div>
             <div className="Popup-Inner">
-              <X
-                className="Popup-Close"
-                onClick={this.togglePopup.bind(this)}
-                onKeyDown={this.handleKeyDown}
-                tabIndex={0}
-                aria-label="Toggle Popup"
-                role="button"
-              />
+              <X className="Popup-Close" onClick={this.togglePopup.bind(this)} />
               {children}
             </div>
           </div>

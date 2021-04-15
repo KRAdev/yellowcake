@@ -1,16 +1,22 @@
 import React from 'react'
 import CMS from 'netlify-cms-app'
+import uploadCare from 'netlify-cms-media-library-uploadcare'
 import './cms-utils'
 
 import { HomePageTemplate } from '../templates/HomePage'
-import { ComponentsPageTemplate } from '../templates/ComponentsPage'
-import { ContactPageTemplate } from '../templates/ContactPage'
-import { DefaultPageTemplate } from '../templates/DefaultPage'
-import { BlogIndexTemplate } from '../templates/BlogIndex'
-import { SinglePostTemplate } from '../templates/SinglePost'
-import uploadcare from 'netlify-cms-media-library-uploadcare'
 
-CMS.registerMediaLibrary(uploadcare)
+import { ProductionsPageTemplate } from '../templates/ProductionsPage'
+import { ContactPageTemplate } from '../templates/ContactPage'
+
+import { BlogIndexTemplate } from '../templates/BlogIndex'
+import { ArtistPageTemplate } from '../templates/ArtistPage'
+
+import { SinglePostTemplate } from '../templates/SinglePost'
+import { ArtistPostTemplate } from '../templates/ArtistPost'
+
+import { EnterPageTemplate } from '../templates/EnterPage'
+
+CMS.registerMediaLibrary(uploadCare)
 
 if (
   window.location.hostname === 'localhost' &&
@@ -26,18 +32,30 @@ if (
 CMS.registerPreviewTemplate('home-page', ({ entry }) => (
   <HomePageTemplate {...entry.toJS().data} />
 ))
-CMS.registerPreviewTemplate('components-page', ({ entry }) => (
-  <ComponentsPageTemplate {...entry.toJS().data} />
+
+CMS.registerPreviewTemplate('productions-page', ({ entry }) => (
+  <ProductionsPageTemplate {...entry.toJS().data} />
 ))
 CMS.registerPreviewTemplate('contact-page', ({ entry }) => (
   <ContactPageTemplate {...entry.toJS().data} />
 ))
-CMS.registerPreviewTemplate('infoPages', ({ entry }) => (
-  <DefaultPageTemplate {...entry.toJS().data} />
+
+CMS.registerPreviewTemplate('enter-page', ({ entry }) => (
+  <EnterPageTemplate {...entry.toJS().data} />
 ))
+
 CMS.registerPreviewTemplate('blog-page', ({ entry }) => (
   <BlogIndexTemplate {...entry.toJS().data} />
 ))
+
+CMS.registerPreviewTemplate('blog-page2', ({ entry }) => (
+  <ArtistPageTemplate {...entry.toJS().data} />
+))
+
 CMS.registerPreviewTemplate('posts', ({ entry }) => (
   <SinglePostTemplate {...entry.toJS().data} />
+))
+
+CMS.registerPreviewTemplate('artists', ({ entry }) => (
+  <ArtistPostTemplate {...entry.toJS().data} />
 ))

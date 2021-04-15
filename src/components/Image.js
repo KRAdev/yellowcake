@@ -60,6 +60,7 @@ class Image extends React.Component {
       secSet = '',
       fullSrc,
       smallSrc,
+      onClick,
       title = '',
       alt = '',
       lazy = true
@@ -87,16 +88,11 @@ class Image extends React.Component {
     }`
 
     let style = {}
-    if (background && lazy) {
+    if (background) {
       style = {
         backgroundImage: `url(${
           this.state.isIntersecting ? fullSrc : smallSrc
         })`,
-        backgroundSize
-      }
-    } else {
-      style = {
-        backgroundImage: `url(${fullSrc})`,
         backgroundSize
       }
     }
@@ -121,13 +117,14 @@ class Image extends React.Component {
                   src={this.state.isIntersecting ? fullSrc : ''}
                   srcSet={this.state.isIntersecting ? secSet : ''}
                   sizes={'100vw'}
+                  onClick={onClick}
                   title={title}
                   alt={alt}
                 />
               )}
               {background && (
                 <div
-                  className={`${lazy} LazyImage BackgroundImage absolute ${
+                  className={`LazyImage BackgroundImage absolute ${
                     className + this.state.isIntersecting ? ' faded' : ''
                   }`}
                   style={style}
@@ -150,6 +147,7 @@ class Image extends React.Component {
                 src={fullSrc}
                 srcSet={secSet}
                 sizes={'100vw'}
+                onClick={onClick}
                 title={title}
                 alt={alt}
               />
